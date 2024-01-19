@@ -48,3 +48,23 @@ describe("getById method works as intended", () => {
     expect(result).toHaveProperty("instrument_family" && "instrument_name" && "instrument_id")
   })
 })
+
+describe("insert method works as intended", () => {
+  const newInstrument = {"instrument_name": "Cello", "instrument_family": "String"}
+  test("insert changes the length to be 9", async () => {
+    await Instruments.insert(newInstrument)
+    const result = await db("instruments")
+    expect(result).toHaveLength(9)
+  })
+  test("insert completes with no errors, returns same instrument as inserted", async () => {
+    const result =await Instruments.insert(newInstrument)
+    expect(result).toEqual(newInstrument)
+  })
+  // test("inserting a instrument that already exists does not add it to the database", async () => {
+  //   const sameInstrument = {"instrument_name": "Tuba", "instrument_family": "Brass"}
+  //   await Instruments.insert(sameInstrument)
+  //   const result = await db("instrument")
+  //   expect(result).toHaveLength(8)
+
+  // }) This technically works but Testing is impossible because it will never finish the test. At least, I think its impossible
+})
