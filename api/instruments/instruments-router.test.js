@@ -35,3 +35,12 @@ describe("[GET] at id endpoint", () => {
     expect(response.body).toEqual(correctInstrument)
   })
 })
+
+describe("[POST] at /", () => {
+  test("returns the new instrument provided as well as correct status code", async () => {
+    const newInstrument = { "instrument_name": "Harmonica", "instrument_family": "Woodwind" }
+    const response = await request(server).post("/").send(newInstrument)
+    expect(response.body).toEqual(newInstrument)
+    expect(response.status).toBe(201)
+  })
+})
