@@ -14,7 +14,7 @@ function insert(instrument) {
   return db("instruments")
   .insert(instrument)
   .then(([id]) => {
-    return db("hobbits").where("id", id)
+    return db("instruments").where("id", id)
   })
 }
 
