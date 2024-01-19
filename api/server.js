@@ -17,11 +17,26 @@ server.get("/", (req, res, next) => {
 })
 
 server.get("/:id", (req, res, next) => {
-  res.json("WIP 2")
+  const id = req.params.id
+  Instruments.getById(id)
+  .then(instrument => {
+    res.status(200).json(instrument)
+  })
+  .catch(error => {
+    next(error)
+  })
 })
 
 server.post("/", (req, res, next) => {
-  res.json("WIP 3")
+  const newInstrument = req.body
+
+  Instruments.insert(newInstrument)
+  .then(instrument => {
+    res.status(201).json(instrument)
+  })
+  .catch(error => {
+    next(error)
+  })
 })
 
 

@@ -22,4 +22,16 @@ describe("[GET] endpoint at /", () => {
     const response = await request(server).get("/")
     expect(response.body).toHaveLength(8)
   })
+  test("returns the correct status on successful call", async () => {
+    const response = await request(server).get("/")
+    expect(response.status).toBe(200)
+  })
+})
+
+describe("[GET] at id endpoint", () => {
+  test("returns the correct instrument correlating to id", async () => {
+    const response = await request(server).get("/5")
+    const correctInstrument = {"instrument_name": "Trombone", "instrument_family": "Brass", "instrument_id": 5}
+    expect(response.body).toEqual(correctInstrument)
+  })
 })
