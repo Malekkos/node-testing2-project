@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "nodemon": "nodemon index.js",
+    "server": "nodemon index.js",
     "start": "node index.js",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
@@ -16,6 +16,7 @@
     "url": "git+https://github.com/bloominstituteoftechnology/node-testing2-project.git"
   },
   "dependencies": {
+    "dotenv": "^16.3.2",
     "express": "^4.18.2",
     "knex": "^3.1.0",
     "sqlite3": "^5.1.7"
